@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<?php  include "includes/scripts.php"; ?>
-	<title>Sisteme IoT Confecciones</title>
+	<title>Sistema IoT Confecciones</title>
 </head>
 <body>
 	<?php  include "includes/header.php"; ?>
