@@ -22,4 +22,4 @@
 		}
 
 	?>
-	<?php include "functions.php"; ?>
+	
