@@ -11,14 +11,15 @@
 
 		if(!empty($_POST))
 		{
-			if(empty($_POST['usuario']) || empty($_POST['clave']))
+			if(empty($_POST['usuario']) || empty($_POST['clave']) || empty($_POST['empresa']) || $_POST['empresa']!="Carsil")
 			{
-				$alert='Ingrese su usuario y su clave';
+				$alert='Ingrese usuario, clave y nombre de empresa correctos';
 			} else {
 				require_once "conexion.php";
 					
 				$user = mysqli_real_escape_string ($conexion, $_POST['usuario']);
 				$pass = md5(mysqli_real_escape_string ($conexion, $_POST['clave']));
+				$empresa = mysqli_real_escape_string ($conexion, $_POST['empresa']);
 
 				$query = mysqli_query($conexion, "SELECT * FROM usuario WHERE usuario = '$user' AND clave='$pass'");
 				mysqli_close($conexion);
@@ -62,6 +63,7 @@
 			<h3>Ingrese Usuario y Contraseña</h3>
 			<input type="text" name="usuario" placeholder="Usuario">
 			<input type="password" name="clave" placeholder="Contraseña">
+			<input type="text" name="empresa" placeholder="Empresa">
 			<div class="alert"><?php echo isset($alert)? $alert : ''; ?></div>
 			<input type="submit" value="INGRESAR">
 
