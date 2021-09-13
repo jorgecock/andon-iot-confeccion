@@ -15,7 +15,7 @@
 <head>
 	<title>Módulos</title>
 	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="">
+	<meta http-equiv="refresh" content="5">
 </head>
 <body>
 	<?php  include "includes/header.php"; ?>
