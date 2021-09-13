@@ -46,7 +46,7 @@
 	} 	
 ?>
 
-
+	
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -57,10 +57,10 @@
 <body>
 	<section id="container">
 		<form action="" method="post">
-			<h3>Sistema IoT Confecciones</h3>
+			<h3>Sistema Andon-IoT-Confecciones</h3>
 			<h3>Iniciar Sesion</h3>
-			<img src="img/iniciarsesion.png" alt="login">
-			<h3>Ingrese Usuario y Contraseña</h3>
+			<img src="img/faro.jpg" alt="login">
+			<h3>Ingrese Usuario, Contraseña y Nombre de la empresa afiliada.</h3>
 			<input type="text" name="usuario" placeholder="Usuario">
 			<input type="password" name="clave" placeholder="Contraseña">
 			<input type="text" name="empresa" placeholder="Empresa">
