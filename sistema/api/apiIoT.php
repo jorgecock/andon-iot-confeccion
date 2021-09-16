@@ -117,7 +117,7 @@ if(!empty($_GET)) { //se ejecuta si se reciben parametros
 								$mensaje = array("Estado"=>"Ok","Respuesta" =>"pieza hecha +1", "iddispositivoIoT"=>$_GET['iddispositivoiot'],"idtipodispositivoIoT"=>$_GET['idtipodispositivoiot'],"Modulo"=>$mod, "Unidades esperadas"=>$unidadesesperadas, "Productos Hechos"=>$nuevosproductoshechos,"Estado Actual"=>$estadoactual,"Voltage"=>$voltage);
 							
 								//***********************************************************************************
-								$periodo=180; //3600; //lapso de tiempo en segundos en el cual se registra cada valor de eficiencia
+								$periodo=3600; //3600; //lapso de tiempo en segundos en el cual se registra cada valor de eficiencia
 								$cambiotiempo=intval($nuevotiempoacumulado/$periodo)-intval($tiempoacumuladoanterior/$periodo); 
 								//***********************************************************************************
 
