@@ -70,7 +70,7 @@
 								
 								<?php 
 									//verificacion de usuario
-									if($_SESSION['rol']==1 || $_SESSION['rol']==4){ ?>
+									if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5){ ?>
 								<td>
 									<a class="link_edit" href="editar_producto.php?id=<?php echo $data['idproducto']; ?>"><i class="far fa-edit"></i> Editar</a>
 									|  

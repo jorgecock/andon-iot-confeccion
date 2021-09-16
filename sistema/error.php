@@ -84,6 +84,10 @@
 	<meta http-equiv="refresh" content="5">
 </head>
 <body onload="mueveReloj()">
+	<div>	
+		<?php include "includes/header.php"; ?>	
+		<br><br><br><br>
+	</div>
 	<div>
 		<hr size="8px" color="black" />
 		<form name="form_reloj">

@@ -57,7 +57,7 @@
 <body>
 	<section id="container">
 		<form action="" method="post">
-			<h3>Sistema Andon-IoT-Confecciones</h3>
+			<h3>Sistema<br>Andon-IoT-Confecciones</h3>
 			<h3>Iniciar Sesion</h3>
 			<img src="img/faro.jpg" alt="login">
 			<h3>Ingrese Usuario, Contraseña y Nombre de la empresa afiliada.</h3>
@@ -66,9 +66,7 @@
 			<input type="text" name="empresa" placeholder="Empresa">
 			<div class="alert"><?php echo isset($alert)? $alert : ''; ?></div>
 			<input type="submit" value="INGRESAR">
-
 		</form>
-
 	</section>
 
 </body>
