@@ -2,11 +2,12 @@
  	//Registro Usuario
 
  	include "includes/scripts.php";
+ 	
 	session_start();
-	if($_SESSION['rol']!=1){
+	if($_SESSION['rol']!=1 AND $_SESSION['rol']!=6){
 		header("location: ./");
 	}
-	
+	$idempresa=$_SESSION['idempresa'];
 	
 	if (!empty($_POST)) 
 	{
@@ -23,13 +24,13 @@
 				$alert='<p class="msg_error">Todos los campos son obligatorios</p>';
 			}else{
 				include "../conexion.php";
-				$query= mysqli_query($conexion,"SELECT * FROM usuario WHERE ((usuario='$usuario' OR correo='$email') AND status=1)");
+				$query= mysqli_query($conexion,"SELECT * FROM usuario WHERE ((usuario='$usuario' OR correo='$email') AND status=1 AND idempresa=$idempresa)");
 				$result=mysqli_fetch_array($query);
 				if ($result>0){
 					$alert='<p class="msg_error">El usuario o el correo ya existen</p>';
 				}else{
-					$query_insert = mysqli_query($conexion,"INSERT INTO usuario(nombre,correo,usuario,clave,rol,created_at)
-						VALUES ('$nombre','$email','$usuario','$clave','$rol','$fecha')");
+					$query_insert = mysqli_query($conexion,"INSERT INTO usuario(nombre,correo,usuario,clave,rol,created_at,idempresa)
+						VALUES ('$nombre','$email','$usuario','$clave','$rol','$fecha','$idempresa')");
 					if($query_insert){
 						//$alert='<p class="msg_save">Usuario creado Correctamente</p>';
 						mysqli_close($conexion);
@@ -49,7 +50,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Registro de Usuarios</title>
@@ -85,7 +86,8 @@
 				<select name="rol" id="rol" class="notItemOne">
 					<?php 
 						if($result_rol>0){
-							while ($rol_a= mysqli_fetch_array($query_rol)) { ?>
+							for ($i=0;$i<$result_rol-1;$i++){
+								$rol_a= mysqli_fetch_array($query_rol); ?>
 								<option value="<?php echo $rol_a["idrol"]; ?>"      
 									<?php if($rol==$rol_a["idrol"]){echo " selected";} ?>>
 									<?php echo $rol_a["rol"]; ?>

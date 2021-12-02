@@ -21,12 +21,11 @@
 			$idmodulo=$_POST['idmodulo'];
 			$fecha=$_POST['fecha'];
 
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				SELECT *
 				FROM registroeficiencias
 				WHERE (ordendeprod=$idordenproduccion AND itemaproducir='$idproducto' AND modulo=$idmodulo AND (fechahora LIKE '%$fecha%'))");
-			include "conexion.php";
 			mysqli_close($conexion);
 			$result = mysqli_num_rows($query1);
 			if($result>0){
@@ -43,7 +42,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<title>Eficiencias a Excel</title>
 		<meta charset="UTF-8">

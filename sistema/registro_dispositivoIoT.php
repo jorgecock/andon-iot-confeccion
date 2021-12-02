@@ -6,6 +6,7 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
+	$idempresa=$_SESSION['idempresa'];
 
 	if (!empty($_POST)) 
 	{
@@ -21,7 +22,7 @@
 			$alert='<p class="msg_error">Los campos: Modulo, Tipo de dispositivo y Firmwares son obligatorios</p>';
 		}else{
 			include "../conexion.php";
-			$query= mysqli_query($conexion,"SELECT * FROM dispositivosiot WHERE ((modulo='$modulo') AND status=1)");
+			$query= mysqli_query($conexion,"SELECT * FROM dispositivosiot WHERE modulo='$modulo' AND status=1");
 			$result=mysqli_fetch_array($query);
 
 			if ($result>0){
@@ -47,7 +48,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Registro de Dispositivo IoT</title>
@@ -68,7 +69,7 @@
 		
 				<?php
 					include "../conexion.php";
-					$query_tipo = mysqli_query($conexion,"SELECT * FROM modulos");
+					$query_tipo = mysqli_query($conexion,"SELECT * FROM modulos WHERE idempresa=$idempresa");
 					mysqli_close($conexion);
 					$result_tipo = mysqli_num_rows($query_tipo);
 				?>

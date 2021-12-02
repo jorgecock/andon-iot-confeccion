@@ -4,7 +4,7 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
-	include "../conexion.php";
+	
 	
 	//mostrar datos a enviar por post
 	if(!empty($_POST)){
@@ -17,8 +17,9 @@
 		$idordenproduccion=$_POST['idordenproduccion'];
 		
 		//$query_delete=mysqli_query($conexion,"DELETE FROM usuario WHERE idusuario=$idusuario");
+		include "../conexion.php";
 		$query_delete=mysqli_query($conexion,"UPDATE ordenesproduccion SET status=0 WHERE idordenproduccion=$idordenproduccion");
-
+		mysqli_close($conexion);
 
 		if($query_delete){
 			header('location: lista_ordenes_produccion.php');
@@ -35,7 +36,9 @@
 	}else{
 		
 		$idordenproduccion=$_REQUEST['id'];
+		include "../conexion.php";
 		$query=mysqli_query($conexion,"SELECT * FROM ordenesproduccion WHERE idordenproduccion=$idordenproduccion");
+		mysqli_close($conexion);
 		$result=mysqli_num_rows($query);
 		if ($result>0){
 			while ($data=mysqli_fetch_array($query)) {
@@ -51,7 +54,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Eliminar Orden de Producción</title>

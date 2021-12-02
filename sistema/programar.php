@@ -3,7 +3,7 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
-	
+	$idempresa=$_SESSION['idempresa'];
 	$estadopagina=1; //entrandoorden
 
 	include "scripts.php";
@@ -30,7 +30,7 @@
 				$minutosprogramados=$_POST['minutosprogramados'];
 				$itemaproducir=$_POST['itemaproducir'];
 
-				include "conexion.php";
+				include "../conexion.php";
 				$query1 = mysqli_query($conexion,"
 					UPDATE modulos 
 					SET estado=$siguienteestado, unidadesesperadas=$unidadesesperadas, tiempocicloesperado=$tiempocicloesperado, minutosprogramados=$minutosprogramados, ordendeprod='$ordendeprod', itemaproducir='$itemaproducir', productoshechos=0, momentodeinicio=0, tiempopausado=0, tiempoacumulado=0, tiemporegistro=0, tiemporegistroanterior=0, ultimotiempodeproduccion=0
@@ -44,8 +44,8 @@
 
 	//datos para los select de ordenes de produccion y producto
 	include "../conexion.php";
-	$query_ordenesproduccion = mysqli_query($conexion,"SELECT * FROM ordenesproduccion WHERE status=1");
-	$query_producto = mysqli_query($conexion,"SELECT * FROM producto WHERE status=1");
+	$query_ordenesproduccion = mysqli_query($conexion,"SELECT * FROM ordenesproduccion WHERE status=1 AND idempresa=$idempresa");
+	$query_producto = mysqli_query($conexion,"SELECT * FROM producto WHERE status=1 AND idempresa=$idempresa");
 	mysqli_close($conexion);
 	$result_ordenesproduccion = mysqli_num_rows($query_ordenesproduccion);
 	$result_producto = mysqli_num_rows($query_producto);
@@ -55,7 +55,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Estado 1 Ingreso de Datos de orden de producción</title>
 </head>
@@ -76,8 +76,6 @@
 	  		//letrero nombre módulo
 	  		include "letreroNombreModulo.php"; 
 	  	?>
-
-
 
 		<hr size="3px" color="black" />
 		<h1>Datos de orden de producción para el día:</h1>

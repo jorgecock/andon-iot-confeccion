@@ -4,7 +4,7 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
-	include "../conexion.php";
+	
 	
 
 	//mostrar datos a enviar por post
@@ -18,8 +18,9 @@
 		$iddispositivoiot=$_POST['iddispositivoiot'];
 		
 		$fecha=date('y-m-d H:i:s');
+		include "../conexion.php";
 		$query_delete=mysqli_query($conexion,"UPDATE dispositivosiot SET status=0 , deleted_at='$fecha' WHERE iddispositivoIoT=$iddispositivoiot");
-
+		mysqli_close($conexion);
 
 		if($query_delete){
 			header('location: lista_dispositivosIoT.php');
@@ -28,15 +29,15 @@
 		}
 	}
 
-
-
 	//Mostrar Datos Recibidos de Get
 	if (empty($_REQUEST['id'])){
 		header('location: lista_dispositivosIoT.php');
 	}else{
 		
 		$iddispositivoiot=$_REQUEST['id'];
+		include "../conexion.php";
 		$query=mysqli_query($conexion,"SELECT u.modulo, u.firmware, r.tipodispositivoIoT FROM dispositivosiot u INNER JOIN tiposdispositivosiot r on u.tipodispositivoIoT= r.idtipodispositivoiot WHERE u.iddispositivoIoT=$iddispositivoiot");
+		mysqli_close($conexion);
 		$result=mysqli_num_rows($query);
 		if ($result>0){
 			while ($data=mysqli_fetch_array($query)) {
@@ -54,7 +55,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Eliminar Dispositivo IoT</title>

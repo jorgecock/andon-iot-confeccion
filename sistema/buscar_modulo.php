@@ -12,12 +12,12 @@
 		header("location: lista_modulos.php");
 	}
 	include "includes/scripts.php";
-
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<title>Módulos</title>
 	<meta charset="UTF-8">
@@ -37,7 +37,7 @@
 
 		<table>
 			<tr>
-				<!-- <th>ID</th> -->
+				<th>ID</th>
 				<th>Nombre</th>
 				<th>Descripción</th>
 				<th>Estado</th>
@@ -65,7 +65,7 @@
 						OR r.numeroordenproduccion LIKE '%$busqueda%' 
 						OR v.estado LIKE '%$busqueda%' 
 						OR s.nombre LIKE '%$busqueda%'
-					) AND u.status=1");
+					) AND u.status=1 AND u.idempresa='$idempresa'");
 				
 				include "calculonumpaginas.php";
 
@@ -83,7 +83,7 @@
 						OR r.numeroordenproduccion LIKE '%$busqueda%' 
 						OR v.estado LIKE '%$busqueda%'
 						OR s.nombre LIKE '%$busqueda%'
-					) AND u.status=1 ORDER BY u.idmodulo ASC LIMIT $desde,$por_pagina
+					) AND u.status=1 AND u.idempresa='$idempresa' ORDER BY u.idmodulo ASC LIMIT $desde,$por_pagina
 				");
 				mysqli_close($conexion);
 
@@ -92,7 +92,7 @@
 					while ($data=mysqli_fetch_array($query)) {
 						?>
 							<tr>
-								<!-- <td><?php echo $data['idmodulo']; ?></td> -->
+								<td><?php echo $data['idmodulo']; ?></td>
 								<td><?php echo $data['nombremodulo']; ?></td>
 								<td><?php echo $data['descripcion']; ?></td>
 								<td><?php echo $data['nomestado']; ?></td>

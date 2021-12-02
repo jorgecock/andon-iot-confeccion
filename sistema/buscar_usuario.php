@@ -4,11 +4,12 @@
 	//	header("location: ./");
 	//}
 	include "../conexion.php";
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<?php  include "includes/scripts.php"; ?>
@@ -57,7 +58,7 @@
 						u.correo LIKE '%$busqueda%' OR 
 						u.usuario LIKE '%$busqueda%' OR 
 						r.rol LIKE '%$busqueda%'
-					) AND u.status=1");
+					) AND u.status=1  AND u.idempresa=$idempresa");
 				include "calculonumpaginas.php";
 
 
@@ -72,7 +73,7 @@
 						u.correo LIKE '%$busqueda%' OR 
 						u.usuario LIKE '%$busqueda%' OR 
 						r.rol LIKE '%$busqueda%'
-						) AND u.status=1 
+						) AND u.status=1  AND u.idempresa=$idempresa
 					ORDER BY u.idusuario ASC 
 					LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);

@@ -19,7 +19,7 @@
 			$siguienteestado=1; //estado programar produccion
 			
 
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				UPDATE modulos 
 				SET estado=$siguienteestado 
@@ -31,7 +31,7 @@
 
 	include "validacionestadoactual.php";
 
-	include "conexion.php";
+	include "../conexion.php";
 	$query2 = mysqli_query($conexion,"
 				SELECT u.*, r.numeroordenproduccion, s.nombre  
 				FROM modulos u 
@@ -58,7 +58,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Estado 6 Terminado</title>
 </head>
@@ -131,12 +131,11 @@
 			$idmodulo=$mod;
 			$fecha=date('y-m-d');
 
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				SELECT *
 				FROM registroeficiencias
 				WHERE (ordendeprod='$idordenproduccion' AND itemaproducir='$idproducto' AND modulo=$idmodulo AND (fechahora LIKE '%$fecha%'))" );
-				include "conexion.php";
 	
 			$result = mysqli_num_rows($query1);
 			if($result>0){

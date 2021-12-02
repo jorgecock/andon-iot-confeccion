@@ -4,7 +4,7 @@
 		$_SESSION['mod']=$_GET['mod'];
 	}
 	if (!isset($_SESSION['mod'])){
-		include "conexion.php";
+		include "../conexion.php";
 		$query=mysqli_query($conexion,"
 			SELECT * FROM modulos WHERE status=1 ORDER BY idmodulo ASC ");
 		mysqli_close($conexion);

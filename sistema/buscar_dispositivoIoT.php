@@ -8,7 +8,7 @@
 	//}	
 
 	include "includes/scripts.php";
-
+	$idempresa=$_SESSION['idempresa'];
 	$busqueda=strtolower($_REQUEST['busqueda']);
 	if(empty($busqueda)){
 		header("location: lista_dispositivosIoT.php");
@@ -16,7 +16,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Dispositivos IoT</title>
@@ -58,7 +58,7 @@
 						r.tipodispositivoIoT LIKE '%$busqueda%' OR 
 						u.firmware LIKE '%$busqueda%' OR 
 						m.nombre LIKE '%$busqueda%'
-					) AND u.status=1");
+					) AND u.status=1 AND s.idempresa='$idempresa'");
 				include "calculonumpaginas.php";
 
 				//Crear lista
@@ -69,11 +69,12 @@
 					LEFT JOIN usuario m ON u.idusuario = m.idusuario
 					LEFT JOIN modulos s ON u.modulo = s.idmodulo
 					WHERE (
+						u.iddispositivoIoT LIKE '%$busqueda%' OR
 						s.nombremodulo LIKE '%$busqueda%' OR 
 						r.tipodispositivoIoT LIKE '%$busqueda%' OR 
 						u.firmware LIKE '%$busqueda%' OR 
 						m.nombre LIKE '%$busqueda%'
-					) AND u.status=1 ORDER BY u.iddispositivoIoT ASC LIMIT $desde,$por_pagina");
+					) AND u.status=1 AND s.idempresa='$idempresa' ORDER BY u.iddispositivoIoT ASC LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);
 				
 				$result = mysqli_num_rows($query);

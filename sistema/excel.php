@@ -12,7 +12,7 @@
 
 
 
-	include "conexion.php";
+	include "../conexion.php";
 	$query1 = mysqli_query($conexion,"
 		SELECT *
 		FROM registroeficiencias
@@ -53,7 +53,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<title>Grabar</title>
 		<meta charset="UTF-8">

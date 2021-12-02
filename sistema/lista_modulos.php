@@ -8,10 +8,11 @@
 	//}
 
 	include "includes/scripts.php";
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<title>Módulos</title>
 	<meta charset="UTF-8">
@@ -31,7 +32,7 @@
 
 		<table>
 			<tr>
-				<!-- <th>ID</th> -->
+				<th>ID</th>
 				<th>Nombre</th>
 				<th>Descripción</th>
 				<th>Estado</th>
@@ -52,7 +53,7 @@
 					LEFT JOIN ordenesproduccion r ON u.ordendeprod=r.idordenproduccion  
 					INNER JOIN estados v ON u.estado=v.idestado
 					LEFT	 JOIN producto s ON u.itemaproducir=s.idproducto
-					WHERE u.status=1");
+					WHERE u.status=1 AND u.idempresa='$idempresa'");
 				include "calculonumpaginas.php";
 				
 				//Crear lista
@@ -62,7 +63,7 @@
 					LEFT JOIN ordenesproduccion r ON u.ordendeprod=r.idordenproduccion  
 					INNER JOIN estados v ON u.estado=v.idestado
 					LEFT	 JOIN producto s ON u.itemaproducir=s.idproducto
-					WHERE u.status=1 
+					WHERE u.status=1 AND u.idempresa='$idempresa'
 					ORDER BY idmodulo ASC LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);
 
@@ -71,7 +72,7 @@
 					while ($data=mysqli_fetch_array($query)) {
 						?>
 							<tr>
-								<!-- 0<td><?php echo $data['idmodulo']; ?></td> -->
+								<td><?php echo $data['idmodulo']; ?></td>
 								<td><?php echo $data['nombremodulo']; ?></td>
 								<td><?php echo $data['descripcion']; ?></td>
 								<td><?php echo $data['nomestado']; ?></td>

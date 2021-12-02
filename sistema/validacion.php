@@ -26,7 +26,7 @@
 			$pausashechas=0;
 			
 
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				UPDATE modulos
 				SET estado=$siguienteestado, productoshechos=$productoshechos, momentodeinicio=$momentodeinicio, tiempoacumulado=0, tiempopausado=0, prodhechosdespausaini=$prodhechosdespausaini, momentoinidespausa= $momentoinidespausa, pausashechas=0, tiemporegistro=$momentodeinicio
@@ -38,7 +38,7 @@
 		if (isset($_POST['Regresar'])){
 			
 			$siguienteestado=1; //pasa a estado entrandoorden
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				UPDATE modulos 
 				SET estado=$siguienteestado
@@ -51,7 +51,7 @@
 	include "validacionestadoactual.php";
 
 	//Traer datos y desiciones.
-	include "conexion.php";
+	include "../conexion.php";
 	$query1 = mysqli_query($conexion,"
 				SELECT u.*, r.numeroordenproduccion, s.nombre  
 				FROM modulos u 
@@ -83,7 +83,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Estado 2 Validación</title>
 </head>

@@ -4,7 +4,6 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
-	include "../conexion.php";
 	
 	//mostrar datos a enviar por post
 	if(!empty($_POST)){
@@ -16,7 +15,9 @@
 
 		$idmodulo=$_POST['idmodulo'];
 		$fecha=date('y-m-d H:i:s');
+		include "../conexion.php";
 		$query_delete=mysqli_query($conexion,"UPDATE modulos SET status=0, deleted_at='$fecha' WHERE idmodulo=$idmodulo");
+		mysqli_close($conexion);
 		if($query_delete){
 			header('location: lista_modulos.php');
 		}else{
@@ -25,14 +26,15 @@
 	}
 
 
-
 	//Mostrar Datos Recibidos de Get
 	if (empty($_REQUEST['id'])){
 		header('location: lista_modulos.php');
 	}else{
 		
 		$idmodulo=$_REQUEST['id'];
+		include "../conexion.php";
 		$query=mysqli_query($conexion,"SELECT * FROM modulos WHERE idmodulo=$idmodulo");
+		mysqli_close($conexion);
 		$result=mysqli_num_rows($query);
 		if ($result>0){
 			while ($data=mysqli_fetch_array($query)) {
@@ -49,7 +51,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Eliminar Módulo</title>

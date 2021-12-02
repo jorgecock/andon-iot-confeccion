@@ -8,11 +8,12 @@
 	//}
 
 	include "includes/scripts.php";
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Ordenes de Producción</title>
@@ -66,7 +67,7 @@
 						u.descripcion LIKE '%$busqueda%' OR
 						u.fechacierre LIKE '%$busqueda%' OR
 						r.estado LIKE '%$busqueda%'
-					) AND u.status=1");
+					) AND u.status=1 AND u.idempresa='$idempresa'");
 				include "calculonumpaginas.php";
 
 				//Crear lista
@@ -83,7 +84,8 @@
 						u.descripcion LIKE '%$busqueda%' OR
 						u.fechacierre LIKE '%$busqueda%' OR
 						r.estado LIKE '%$busqueda%'
-					) AND u.status=1 ORDER BY u.idordenproduccion ASC LIMIT $desde,$por_pagina");
+					) AND u.status=1 AND u.idempresa='$idempresa' 
+					ORDER BY u.idordenproduccion ASC LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);
 				$result = mysqli_num_rows($query);
 				if($result>0){

@@ -1,41 +1,45 @@
 		<nav>
 			<ul>
+				<!-- Home -->
 				<li class="principal">
 					<a href="index.php"><i class="fas fa-home"></i> Inicio</a>
 				</li>
 				
-				<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5){
-							//Permiso para programar conteo tableros ?>
-				<li class="principal">
-					<a href="#"><i class="fas fa-microchip"></i> IoT</a>
-					<ul>
-						<li class="principal"><a href="lista_dispositivosIoT.php">Dispositivos IoT</a></li>
-						<li class="principal"><a href="lista_tiposdispositivosIoT.php">Tipos de dispositivo IoT</a></li>
-					</ul>
-				</li>
+				<!-- IoT -->
+				<?php //Registro de dispositivos IoT. 
+				if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6){ 
+				?>
+					<li class="principal">
+						<a href="#"><i class="fas fa-microchip"></i> IoT</a>
+						<ul>
+							<li class="principal"><a href="lista_dispositivosIoT.php">Dispositivos IoT</a></li>
+							
+							<?php if($_SESSION['rol']==6){ ?>
+								<li class="principal"><a href="lista_tiposdispositivosIoT.php">Tipos de dispositivo IoT</a></li>
+							<?php } ?>
+
+						</ul>
+					</li>
 				<?php } ?>
 
-
+				<!-- Produccion -->
 				<li class="principal">
 					<a href="#"><i class="fas fa-industry"></i> Produccion</a>
 					<ul>
 						
-						<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5){
+						<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6){
 							//Permiso para programar conteo tableros 
-
-
-
-
 						?>
-						<li><a href="programar.php">Ejecución de Orden de Producción</a></li>
+							<li><a href="programar.php">Ejecución de Orden de Producción</a></li>
 						<?php } ?>
+						
 						<li><a href="programarTablero.php">Visualizar Tablero en planta</a></li>
 						
-						<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5){
+						<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6){
 							//Permiso para exportar datos de eficiencia a excel ?>
-						<li><a href="eficienciasaexcel.php">Descargar datos de eficiencia a excel</a></li>
-						<li class="principal"><a href="lista_modulos.php">Módulos Producción</a></li>
-						<li><a href="lista_ordenes_produccion.php">Ordenes de Producción</a></li>
+							<li><a href="eficienciasaexcel.php">Descargar datos de eficiencia a excel</a></li>
+							<li class="principal"><a href="lista_modulos.php">Módulos Producción</a></li>
+							<li><a href="lista_ordenes_produccion.php">Ordenes de Producción</a></li>
 						<?php } ?>
 
 						<!--
@@ -44,11 +48,12 @@
 						<li><a href="#">Control de Calidad</a></li>
 						<li><a href="#">Inventarios</a></li>
 						-->
-
 					</ul>
 				</li>
 
-				<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5){
+
+
+				<?php if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6){
 				//Permiso para editar personas ?>
 					<li class="principal">
 						<a href="#"><i class="fas fa-users"></i> Gestión Humana</a>

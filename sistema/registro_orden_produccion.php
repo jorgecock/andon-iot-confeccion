@@ -8,6 +8,7 @@
 	//}
 
 	include "includes/scripts.php";
+	$idempresa=$_SESSION['idempresa'];
 	
 	//Validar datos recibidos de forma por Post.
 	
@@ -28,13 +29,13 @@
 			$usuario_id=$_SESSION['idUser'];
 
 			include "../conexion.php";
-			$query= mysqli_query($conexion,"SELECT * FROM ordenesproduccion WHERE (numeroordenproduccion='$numeroorden' AND status=1)");
+			$query= mysqli_query($conexion,"SELECT * FROM ordenesproduccion WHERE (numeroordenproduccion='$numeroorden' AND status=1 AND idempresa='$idempresa')");
 			$result=mysqli_fetch_array($query);
 			if ($result>0){
 				$alert='<p class="msg_error">La orden de producción ya fue creada</p>';
 			}else{
-				$query_insert = mysqli_query($conexion,"INSERT INTO ordenesproduccion (	numeroordenproduccion,fechaprogramacion,descripcion, usuario_id)
-					VALUES ($numeroorden, '$fechaprogramacion','$descripcion',$usuario_id)");
+				$query_insert = mysqli_query($conexion,"INSERT INTO ordenesproduccion (	numeroordenproduccion,fechaprogramacion,descripcion, usuario_id, idempresa)
+					VALUES ($numeroorden, '$fechaprogramacion','$descripcion',$usuario_id, $idempresa)");
 				if($query_insert){
 					//$alert='<p class="msg_save">Orden de producción creada Correctamente</p>';
 					mysqli_close($conexion);
@@ -49,7 +50,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Registro de Orden de Producción</title>

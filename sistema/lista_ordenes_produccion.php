@@ -8,10 +8,11 @@
 	//}
 
 	include "includes/scripts.php";
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Ordenes de Producción</title>
@@ -47,7 +48,7 @@
 				$sql_register=mysqli_query($conexion,"
 					SELECT COUNT(*) as total_registro 
 					FROM ordenesproduccion 
-					WHERE status=1");
+					WHERE status=1 AND idempresa='$idempresa'");
 				include "calculonumpaginas.php";
 
 				//Crear lista
@@ -56,7 +57,7 @@
 					FROM ordenesproduccion u 
 					INNER JOIN estadosordenproduccion r ON u.idestadoordenproduccion = r.idestadoordenproduccion
 					LEFT JOIN usuario m ON u.usuario_id = m.idusuario 
-					WHERE u.status=1 ORDER BY u.idordenproduccion ASC LIMIT $desde,$por_pagina");
+					WHERE u.status=1 AND u.idempresa='$idempresa' ORDER BY u.idordenproduccion ASC LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);
 				$result = mysqli_num_rows($query);
 				if($result>0){

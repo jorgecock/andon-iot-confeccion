@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	if($_SESSION['rol']!=1){
+	if($_SESSION['rol']!=1 AND $_SESSION['rol']!=6){
 		header("location: ./");
 	}
-	
+	$idempresa=$_SESSION['idempresa'];
 	/* Validar envio por Post */
 	if (!empty($_POST)) 
 	{
@@ -71,7 +71,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<?php  include "includes/scripts.php"; ?> 
@@ -110,10 +110,11 @@
 				<select name="rol" id="rol" class="notItemOne">
 					<?php 
 						if($result_rol>0){
-							while ($rol_a= mysqli_fetch_array($query_rol)) { ?>	
-								<option value="<?php echo $rol_a["idrol"]; ?>"     
-									<?php if($idrol==$rol_a["idrol"]){echo " selected";} ?>>
-									<?php echo $rol_a["rol"];?>		
+							for ($i=0;$i<$result_rol-1;$i++){
+								$rol_a= mysqli_fetch_array($query_rol); ?>
+								<option value="<?php echo $rol_a["idrol"]; ?>"      
+									<?php if($rol==$rol_a["idrol"]){echo " selected";} ?>>
+									<?php echo $rol_a["rol"]; ?>
 								</option><?php
 							}
 						}

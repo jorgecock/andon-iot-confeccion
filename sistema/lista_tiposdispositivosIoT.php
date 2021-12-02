@@ -3,12 +3,11 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
-	include "../conexion.php";
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<?php  include "includes/scripts.php"; ?>
@@ -39,15 +38,16 @@
 
 			<?php
 				//paginador
+				include "../conexion.php";
 				$sql_register=mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tiposdispositivosiot WHERE status=1");
-				
-
-
+			
 				include "calculonumpaginas.php";
 
 				//Crear lista
 				$query = mysqli_query($conexion,"SELECT idtipodispositivoiot, tipodispositivoIoT, descripcion FROM tiposdispositivosiot WHERE status=1 ORDER BY idtipodispositivoiot ASC LIMIT $desde,$por_pagina");
+				mysqli_close($conexion);
 				$result = mysqli_num_rows($query);
+
 				if($result>0){
 					while ($data=mysqli_fetch_array($query)) {
 						?>

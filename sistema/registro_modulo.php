@@ -24,16 +24,16 @@
 		}else{
 			$nombre=$_POST['nombre'];
 			$descripcion=$_POST['descripcion'];
-			
+			$idempresa=$_SESSION['idempresa'];
 
 			include "../conexion.php";
-			$query= mysqli_query($conexion,"SELECT * FROM modulos WHERE ((nombremodulo='$nombre') AND status=1)");
+			$query= mysqli_query($conexion,"SELECT * FROM modulos WHERE ((nombremodulo='$nombre') AND status=1 AND idempresa='$idempresa')");
 			$result=mysqli_fetch_array($query);
 			if ($result>0){
 				$alert='<p class="msg_error">El nombre del Módulo ya existe</p>';
 			}else{
-				$query_insert = mysqli_query($conexion,"INSERT INTO modulos(nombremodulo,descripcion)
-					VALUES ('$nombre', '$descripcion')");
+				$query_insert = mysqli_query($conexion,"INSERT INTO modulos(nombremodulo,descripcion, idempresa)
+					VALUES ('$nombre', '$descripcion', '$idempresa')");
 
 				if($query_insert){
 					//$alert='<p class="msg_save">Usuario creado Correctamente</p>';
@@ -49,7 +49,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Registro de Módulo</title>

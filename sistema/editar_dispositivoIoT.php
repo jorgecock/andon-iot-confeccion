@@ -4,7 +4,7 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
-	
+	$idempresa=$_SESSION['idempresa'];
 	
 	/* Validar envio por Post */
 	if (!empty($_POST)) 
@@ -54,7 +54,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Actualizar Dispositivo IoT</title>
@@ -81,7 +81,7 @@
 
 				<?php
 					include "../conexion.php";
-					$query_tipo = mysqli_query($conexion,"SELECT * FROM modulos");
+					$query_tipo = mysqli_query($conexion,"SELECT * FROM modulos WHERE idempresa='$idempresa'");
 					mysqli_close($conexion);
 					$result_tipo = mysqli_num_rows($query_tipo);
 				?>

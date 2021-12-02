@@ -6,6 +6,7 @@
 	//if($_SESSION['rol']!=1){
 	//	header("location: ./");
 	//}
+	$idempresa=$_SESSION['idempresa'];
 	
 
 	if (!empty($_POST)) 
@@ -22,12 +23,12 @@
 
 			
 			include "../conexion.php";
-			$query= mysqli_query($conexion,"SELECT * FROM producto WHERE ((referencia='$referencia' OR nombre='$nombre') AND status=1)");
+			$query= mysqli_query($conexion,"SELECT * FROM producto WHERE ((referencia='$referencia' OR nombre='$nombre') AND status=1 AND idempresa=$idempresa)");
 			$result=mysqli_fetch_array($query);	
 			if ($result>0){
 				$alert='<p class="msg_error">El nombre del producto o la referencia ya existen</p>';
 			}else{
-				$query_insert = mysqli_query($conexion,"INSERT INTO producto (nombre, referencia, descripcion, usuario_id) VALUES ('$nombre','$referencia','$descripcion', $usuario_id)");
+				$query_insert = mysqli_query($conexion,"INSERT INTO producto (nombre, referencia, descripcion, usuario_id, idempresa) VALUES ('$nombre','$referencia','$descripcion', $usuario_id, $idempresa)");
 				if($query_insert){
 					mysqli_close($conexion);
 					header('location: lista_productos.php');
@@ -41,7 +42,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Registro de Productos</title>

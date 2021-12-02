@@ -11,14 +11,11 @@
 	include "definicionmodulo.php";
 	include "includes/scripts.php";
 	include "validacionestadoactualTablero.php"; // cambia de ventana según el estado en el que esté el modulo
-
-
-
 ?>
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Sin programar modulo visualizado en tablero</title>
 	<meta charset="utf-8">

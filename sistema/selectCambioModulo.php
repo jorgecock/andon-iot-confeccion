@@ -4,8 +4,8 @@ Número de módulo a seguir.<br>
 <select id="mySelect" name="selectmod" onchange="cambiodemodulo(this.value)">
 	<?php
 		//obtener numero de modulos configurados a hacer seguimiento para select 
-		include "conexion.php";
-		$query1 = mysqli_query($conexion,"SELECT * FROM modulos WHERE status=1");
+		include "../conexion.php";
+		$query1 = mysqli_query($conexion,"SELECT * FROM modulos WHERE status=1 AND idempresa=$idempresa");
 		mysqli_close($conexion);
 		$result1=mysqli_num_rows($query1);
 		echo $result1;

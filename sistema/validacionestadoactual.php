@@ -1,6 +1,6 @@
 <?php
 	//validacion de estado actual vs pagina cargada
-	include "conexion.php";
+	include "../conexion.php";
 	$query = mysqli_query($conexion,"SELECT * FROM modulos WHERE idmodulo=$mod");
 	mysqli_close($conexion);
 	$result = mysqli_num_rows($query);

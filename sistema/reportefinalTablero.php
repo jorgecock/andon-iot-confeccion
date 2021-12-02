@@ -13,7 +13,7 @@
 
 	include "validacionestadoactualTablero.php";
 
-	include "conexion.php";
+	include "../conexion.php";
 	$query2 = mysqli_query($conexion,"
 				SELECT u.*, r.numeroordenproduccion , s.nombre 
 				FROM modulos u 
@@ -39,7 +39,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Estado 6 Terminado</title>
 	<meta charset="utf-8">
@@ -109,13 +109,11 @@
 			$idmodulo=$mod;
 			$fecha=date('y-m-d');
 
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				SELECT *
 				FROM registroeficiencias
-				WHERE (ordendeprod='$idordenproduccion' AND itemaproducir='$idproducto' AND modulo=$idmodulo AND (fechahora LIKE '%$fecha%'))" );
-				include "conexion.php";
-	
+				WHERE (ordendeprod='$idordenproduccion' AND itemaproducir='$idproducto' AND modulo=$idmodulo AND (fechahora LIKE '%$fecha%'))" );	
 			$result = mysqli_num_rows($query1);
 			if($result>0){
 				while ($data=mysqli_fetch_array($query1)) {

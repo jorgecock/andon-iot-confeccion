@@ -8,12 +8,11 @@
 
 	<header>
 		<div class="header">
-			<?php //<img src="../img/sewingmachine1.png"> ?>
 			<h1>Sistema ANDON - IoT - Confecciones</h1>
 			<div class="optionsBar">
 				<p>Colombia, <?php echo fechaC(); ?> </p>
 				<span>|</span>
-				<span class="user"><?php echo $_SESSION['user'].' - '.$_SESSION['rol']; ?></span>
+				<span class="user"><?php echo $_SESSION['user'].' - '.$_SESSION['nombrerol'].' - '.$_SESSION['nombreempresa']; ?></span>
 				<img class="photouser" src="img/user.png" alt="Usuario">
 				<a href="salir.php"><img class="close" src="img/salir.png" alt="Salir del sistema" title="Salir"></a>
 			</div>
@@ -21,7 +20,8 @@
 		<?php  include "nav.php" ?>
 	</header>
 
-	
+	<!--
 	<div class="modal">
 		<div class="bodyModal"></div>
 	</div> 
+	-->

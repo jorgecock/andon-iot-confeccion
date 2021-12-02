@@ -1,13 +1,14 @@
 <?php
 	session_start(); 
-	if($_SESSION['rol']!=1){
+	if($_SESSION['rol']!=1 AND $_SESSION['rol']!=6){
 		header("location: ./");
 	}
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<?php  include "includes/scripts.php"; ?>
@@ -41,7 +42,7 @@
 				$sql_register=mysqli_query($conexion,"
 					SELECT COUNT(*) as total_registro 
 					FROM usuario 
-					WHERE status=1");
+					WHERE status=1 AND idempresa=$idempresa");
 				include "calculonumpaginas.php";
 				
 				//Crear lista
@@ -49,7 +50,7 @@
 					SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol 
 					FROM usuario u 
 					INNER JOIN rol r ON u.rol = r.idrol 
-					WHERE u.status=1 
+					WHERE u.status=1 AND u.idempresa=$idempresa
 					ORDER BY u.idusuario ASC 
 					LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);

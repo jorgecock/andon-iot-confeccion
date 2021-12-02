@@ -4,6 +4,7 @@
 	//	header("location: ./");
 	//}
 	include "includes/scripts.php";
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 
@@ -42,7 +43,7 @@
 				$sql_register=mysqli_query($conexion,"
 					SELECT COUNT(*) as total_registro 
 					FROM producto 
-					WHERE status=1");
+					WHERE status=1 AND idempresa=$idempresa");
 				include "calculonumpaginas.php";
 
 				//Crear lista
@@ -50,7 +51,7 @@
 					SELECT u.idproducto, u.nombre AS 'nombreproducto', u.referencia, u.descripcion, r.nombre AS 'nombreusuario', u.created_at
 					FROM producto u 
 					INNER JOIN usuario r ON u.usuario_id = r.idusuario
-					WHERE u.status=1 
+					WHERE u.status=1 AND u.idempresa='$idempresa'
 					ORDER BY u.idproducto ASC 
 					LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);
@@ -70,7 +71,7 @@
 								
 								<?php 
 									//verificacion de usuario
-									if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5){ ?>
+									if($_SESSION['rol']==1 || $_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6){ ?>
 								<td>
 									<a class="link_edit" href="editar_producto.php?id=<?php echo $data['idproducto']; ?>"><i class="far fa-edit"></i> Editar</a>
 									|  

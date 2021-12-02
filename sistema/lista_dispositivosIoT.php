@@ -8,10 +8,11 @@
 	//}
 
 	include "includes/scripts.php";
+	$idempresa=$_SESSION['idempresa'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Dispositivos IoT</title>
@@ -48,7 +49,7 @@
 					INNER JOIN tiposdispositivosiot r ON u.tipodispositivoiot = r.idtipodispositivoiot
 					LEFT JOIN usuario m ON u.idusuario = m.idusuario
 					LEFT JOIN modulos s ON s.idmodulo =  u.modulo
-					WHERE u.status=1");
+					WHERE u.status=1 AND s.idempresa='$idempresa'");
 				include "calculonumpaginas.php";
 
 				//Crear lista
@@ -58,7 +59,7 @@
 					INNER JOIN tiposdispositivosiot r ON u.tipodispositivoiot = r.idtipodispositivoiot
 					LEFT JOIN usuario m ON u.idusuario = m.idusuario
 					LEFT JOIN modulos s ON s.idmodulo =  u.modulo
-					WHERE u.status=1 ORDER BY u.iddispositivoIoT ASC LIMIT $desde,$por_pagina");
+					WHERE u.status=1 AND s.idempresa='$idempresa' ORDER BY u.iddispositivoIoT ASC LIMIT $desde,$por_pagina");
 				mysqli_close($conexion);
 				
 				$result = mysqli_num_rows($query);

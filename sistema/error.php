@@ -11,7 +11,7 @@
 	include "definicionmodulo.php";
 	include "includes/scripts.php";
 	
-	include "conexion.php";
+	include "../conexion.php";
 	$query2 = mysqli_query($conexion,"
 				SELECT u.*, r.numeroordenproduccion , s.nombre 
 				FROM modulos u 
@@ -48,7 +48,7 @@
 			$momentoinidespausa=strtotime("now");
 
 
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				UPDATE modulos 
 				SET estado=$siguienteestado, prodhechosdespausaini=$prodhechosdespausaini, momentoinidespausa= $momentoinidespausa , tiempopausado=$nuevotiempoacumpausa
@@ -61,7 +61,7 @@
 			
 			$siguienteestado=6; //estado terminado
 			
-			include "conexion.php";
+			include "../conexion.php";
 			$query1 = mysqli_query($conexion,"
 				UPDATE modulos 
 				SET estado=$siguienteestado, prodhechosdespausaini=$prodhechosdespausaini
@@ -77,7 +77,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Estado 5 error</title>
 	<meta charset="utf-8">

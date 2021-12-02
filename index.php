@@ -11,7 +11,7 @@
 
 		if(!empty($_POST))
 		{
-			if(empty($_POST['usuario']) || empty($_POST['clave']) || empty($_POST['empresa']) || $_POST['empresa']!="Carsil")
+			if(empty($_POST['usuario']) || empty($_POST['clave']) || empty($_POST['empresa']))
 			{
 				$alert='Ingrese usuario, clave y nombre de empresa correctos';
 			} else {
@@ -21,7 +21,11 @@
 				$pass = md5(mysqli_real_escape_string ($conexion, $_POST['clave']));
 				$empresa = mysqli_real_escape_string ($conexion, $_POST['empresa']);
 
-				$query = mysqli_query($conexion, "SELECT * FROM usuario WHERE usuario = '$user' AND clave='$pass'");
+				$query = mysqli_query($conexion, "SELECT u.*, s.nombreempresa, t.rol AS nombrerol 
+					FROM usuario u  
+					INNER JOIN empresas s ON u.idempresa=s.idempresa
+					INNER JOIN rol t ON u.rol=t.idrol
+					WHERE usuario = '$user' AND clave='$pass' AND nombreempresa='$empresa' ");
 				mysqli_close($conexion);
 				$result = mysqli_num_rows($query);
 
@@ -34,6 +38,9 @@
 					$_SESSION['email']=$data['correo'];
 					$_SESSION['user']=$data['usuario'];
 					$_SESSION['rol']=$data['rol'];
+					$_SESSION['nombrerol']=$data['nombrerol'];
+					$_SESSION['nombreempresa']=$data['nombreempresa'];
+					$_SESSION['idempresa']=$data['idempresa'];
 
 					header('location: sistema/');
 				}else{
